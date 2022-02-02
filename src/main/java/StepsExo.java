@@ -3,34 +3,30 @@ import java.util.List;
 
 public class StepsExo {
 
-    public static int numberOfPossibilities(int totalSteps){
+    public static int numberOfPossibilities(int totalSteps) {
 
-        List<Integer> currentLevel;
-        List<Integer> previousLevel = new ArrayList<>(1);
-        previousLevel.add(0);
-        int leafCounter = 0;
-        for(int i=0; i<totalSteps; i++){
-            currentLevel = new ArrayList<>(previousLevel.size() * 2);
-            for (Integer prev : previousLevel){
-                Integer oneStep = prev + 1;
-                Integer twoSteps = prev + 2;
-                leafCounter = loadLevel(currentLevel, oneStep, totalSteps, leafCounter);
-                leafCounter = loadLevel(currentLevel, twoSteps, totalSteps, leafCounter);
-            }
-            previousLevel = currentLevel;
-            currentLevel = null;
+        if (totalSteps == 0){
+            return 0;
         }
-        return leafCounter;
 
-       }
+        if (totalSteps == 1){
+            return 1;
+        }
 
-    static int loadLevel(List<Integer> currentLevel, int nbSteps, int totalSteps, int counter){
-        if (nbSteps == totalSteps){
-            counter ++;
+        // The longest path is 1 + 1 + ... +1 = totalSteps
+        int[] stepsByLevel =new int[totalSteps];
+        // The possibilities to reach 1th step is 1
+        stepsByLevel[0] = 1;
+        // The possibilities to reach 2th step is 2
+        stepsByLevel[1] = 2;
+
+        // the possibilities of steps needed to reach the n-th step is
+        // the possibilities of steps needed to reach the n-1th step +
+        // the possibilities of steps needed to reach the n-2th step
+        for(int i=2; i<totalSteps; i++){
+            stepsByLevel[i] = stepsByLevel[i-1] + stepsByLevel[i-2];
         }
-        else if(nbSteps < totalSteps){
-            currentLevel.add(nbSteps);
-        }
-        return counter;
+        return stepsByLevel[totalSteps -1];
     }
+
 }

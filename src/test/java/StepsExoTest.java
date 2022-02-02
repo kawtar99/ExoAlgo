@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StepsExoTest {
@@ -17,6 +19,13 @@ class StepsExoTest {
     @Test
     void testPossibilitiesforFiveSteps(){
         assertEquals(StepsExo.numberOfPossibilities(5), 8);
+    }
+
+    @Test
+    void testPossibilitiesForManySteps(){
+        assertTimeout(Duration.ofMillis(100), () -> {
+            StepsExo.numberOfPossibilities(288855);
+        });
     }
 
 }

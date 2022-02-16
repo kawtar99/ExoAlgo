@@ -45,13 +45,12 @@ class CalculatorTest {
 
     @Test
     public void shouldThrowUnsupportedOperationExceptionWhenPOperator(){
+        System.out.println(0);
         Assertions.assertThrows(UnsupportedOperationException.class,
                 () -> Calculator.calculate("P", 1, 3));
         Assertions.assertThrows(UnsupportedOperationException.class,
                 () -> Calculator.calculate2("P", 1, 3));
 
     }
-
-
 
 }

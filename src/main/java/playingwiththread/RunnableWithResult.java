@@ -2,6 +2,11 @@ package playingwiththread;
 
 import java.util.Random;
 
+
+/**
+ * This class aims to use Runnable having attribute result as return type
+ * the get method is simulating the blocking function of Future
+ */
 class RunnableWithResultExample implements Runnable{
 
     //Object storing the result of the run method
@@ -10,7 +15,7 @@ class RunnableWithResultExample implements Runnable{
     @Override
     public void run() {
         Random generator = new Random();
-        Integer randomNumber = generator.nextInt(5);
+        int randomNumber = generator.nextInt(5);
 
         // handle the exception because the run method doesn't throw any exception
         try {
@@ -34,9 +39,8 @@ class RunnableWithResultExample implements Runnable{
 
         return result;
     }
-}
 
-public class RunnableWithResult {
+
     public static void main(String[] args) throws InterruptedException {
         RunnableWithResultExample[] randomNumberTasks = new RunnableWithResultExample[5];
 
@@ -51,3 +55,4 @@ public class RunnableWithResult {
             System.out.println(randomNumberTasks[i].get());
     }
 }
+

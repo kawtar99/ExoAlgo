@@ -2,6 +2,11 @@ package playingwiththread;
 
 import java.util.concurrent.CountDownLatch;
 
+
+/**
+ * Four Worker threads are executing,
+ * and the main thread is waiting for them to finish using a CountDownLatch Object.
+ */
 class Worker extends Thread {
     private CountDownLatch latch;
 
@@ -21,9 +26,6 @@ class Worker extends Thread {
         }
 
     }
-}
-
-public class CountDownLatchExample {
 
     public static void main(String[] args) throws InterruptedException {
         // instance of CountDownLatch in main thread
@@ -47,5 +49,4 @@ public class CountDownLatchExample {
         // Main thread has started
         System.out.println(Thread.currentThread().getName() + " has finished");
     }
-
 }
